@@ -1,0 +1,107 @@
+@use '../foundation/_variables' as v;
+@use '../foundation/_mixin' as m;
+
+.faq {
+    background-color: v.$backgroundcolor-light;
+    color: v.$text-color-dark;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    margin-inline: auto;
+    padding: 4rem 1rem;
+    background-color: v.$backgroundcolor-tint;
+    color: v.$text-color-dark;
+    box-shadow: 0 0.5rem 1rem oklch(0 0 0 / 0.08);
+
+    @media (min-width: v.$breakpoint-pc) {
+        --faq-content-width: 32em;
+        font-size: 1rem;
+        padding: 8rem;
+        width: calc(var(--faq-content-width) + 8rem);
+    }
+}
+
+.faq-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    text-align: left;
+
+    &__details {
+        &::details-content {                //Blink Chromiumが<details>のコンテンツをラップする疑似要素。WebKitとGeckoでは無視。
+            height: 0;
+            overflow: hidden;
+            transition:
+                height 0.4s ease,
+                content-visibility 0.4s allow-discrete;
+        }
+
+        &[open]::details-content {height: auto;}
+    }
+
+    &__question {
+        position: relative;
+        padding-inline-end: 1.5em;
+        border-radius: 0.25ch; // :focus-visibleの形
+        outline-offset: 0.5ch;
+        font-size: 1.5rem;
+        line-height: 1.25em;
+        letter-spacing: -0.02em;
+        color: v.$text-color-dark;
+        cursor: pointer;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0.75em 0.5em auto auto; // ここの為にリファクタリングするコストが高すぎるので0.75emという誤魔化しで処理
+            width: 0.25em;
+            height: 0.25em;
+            border-right: 2px solid currentColor;
+            border-bottom: 2px solid currentColor;
+            opacity: v.$opacity-subtle;
+            rotate: X calc(pi * 0rad);
+            transform: rotate(calc(pi * 0.25rad));
+            transition:
+                rotate 0.3s cubic-bezier(0, 0.75, 1, 0.25),
+                opacity 0.4s cubic-bezier(0, 0.25, 1, 0.75);
+            border-radius: 1px;
+
+            @media (min-width: v.$breakpoint-pc) {right: -1em;}
+
+        }
+
+        @at-root details[open] & {
+            &::before {
+                rotate: X calc(pi * 1rad);
+                opacity: v.$opacity-half;
+            }
+        }
+
+        &::after {
+            content: attr(data-deco);
+            display: block;
+            padding-inline-start: 0.25ch; // 視差調整
+            font-family: v.$garamond, serif;
+            font-size: 1rem;
+            line-height: 1em;
+            letter-spacing: 0.06em;
+            font-variant-caps: small-caps;
+            color: v.a(v.$text-color-dark, v.$opacity-subtle);
+
+            @media (min-width: v.$breakpoint-pc) {margin-block-start: 0.25em;}
+        }
+    }
+
+    &__answer {
+        margin-block-start: 0.75em;
+        padding-inline-start: 0.125ch; //視差調整
+        font-size: 1rem;
+        line-height: 1.5em;
+        letter-spacing: 0.03em;
+        font-feature-settings: "palt";
+        color: v.a(v.$text-color-dark, v.$opacity-slight);
+    }
+}

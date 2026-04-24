@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+        <title>Sipsprs / シップスパーズ</title>
+        <meta name="description" content="梅田、曽根崎のオーセンティックバー Sipsprs">
+        <meta name="theme-color" content="#464751"> <!-- Converted from oklch(0.40 0.017 285)-->
+        <link rel="icon" href="images/logo.svg">
+
+        <meta property="og:title"           content="Sipsprs">
+        <meta property="og:description"     content="梅田、曽根崎のオーセンティックバー Sipsprs">
+        <meta property="og:locale"          content="ja_JP">
+        <meta property="og:type"            content="website">
+        <meta property="og:url"             content="https://adachigeorge.com/sipsprs/index.html">
+        <meta property="og:image"           content="https://adachigeorge.com/sipsprs/images/ogp.jpg">
+        <meta name="twitter:card"           content="summary_large_image">
+        <!-- <meta name="twitter:site"      content="@Sipsprs"> -->
+        <meta name="twitter:title"          content="Sipsprs / 梅田、曽根崎のオーセンティックバー">
+        <meta name="twitter:description"    content="梅田、曽根崎のオーセンティックバー Sipsprs">
+        <meta name="twitter:image"          content="https://adachigeorge.com/sipsprs/images/ogp.jpg">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Marcellus&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollToPlugin.min.js" defer></script>
+        <script src="js/script.js" defer></script>
+    </head>
+
+    <body>
+        <header class="header">
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="drawer" aria-label="メニューを開く">
+                <span class="menu-toggle__line"></span><span class="menu-toggle__line"></span>
+            </button>
+            <a class="reserve-button" href="javascript:void(0)">お席の予約</a>
+        </header>
+
+        <nav class="drawer" id="drawer" aria-hidden="true">
+            <ul class="drawer__list">
+                <li><a class="drawer__link" href="#concept" data-label="Concept">コンセプト</a></li>
+                <li><a class="drawer__link" href="#gallery" data-label="Photographs">店内の写真</a></li>
+                <li><a class="drawer__link" href="#menu" data-label="Signature menu">メニュー</a></li>
+                <li><a class="drawer__link" href="#faq" data-label="FAQ">よくある質問</a></li>
+                <li><a class="drawer__link" href="#info" data-label="Information">店舗情報</a></li>
+            </ul>
+            <a class="reserve-button" href="javascript:void(0)">お席の予約</a>
+            <div class="drawer__sns">
+                <a href="javascript:void(0)" aria-label="Instagram" class="drawer__sns-link"><img src="images/logo_instagram.svg" alt="Instagram"></a>
+            </div>
+        </nav>
+
+        <section aria-label="ファーストビュー" class="hero">
+            <h1 class="site-title">Sipsprs</h1>
+            <p class="site-outline">梅田 曽根崎のオーセンティックバー</p>
+        </section>
+
+        <main>
+            <section class="concept" id="concept">
+                <h2 class="concept__heading" data-label="Made for you.">あなたのための一杯。</h2>
+                <div class="concept__body">
+                    <p>私たちが作るのは、ただのカクテルではありません。<br>
+                    <span class="word-chunk">お客様の好みや、その日の気分に合わせて作る、</span><span class="word-chunk">その瞬間だけの「特別な一杯」。</span><br>
+                    静かにグラスを傾けながら、<br>
+                    心落ち着くひとときをお過ごしください。</p>
+                </div>
+            </section>
+
+            <section class="gallery" id="gallery">
+                <div class="gallery__stage">
+                    <h2 class="gallery__heading">Photographs</h2>
+                    <figure class="gallery__couple--featured">
+                        <img class="gallery__photo--featured" src="images/img__featured.webp" alt="店内の主な雰囲気" decoding="async" loading="lazy">
+                        <figcaption class="gallery__text--featured">東梅田駅から歩いて2分。イギリスのパブ文化を、落ち着いた空間で楽しんでほしくてSipsprsは生まれました。</figcaption>
+                    </figure>
+                    <figure class="gallery__couple--table">
+                        <img class="gallery__photo--table" src="images/img__table.webp" alt="カウンターテーブルの様子" decoding="async" loading="lazy">
+                        <figcaption class="gallery__text--table">「甘いのが好き」「青いカクテル飲んでみたい」そんなオーダーから生まれる偶然の出会いこそ、きっとバーの醍醐味だと思っています。</figcaption>
+                    </figure>
+                    <figure class="gallery__couple--pouring">
+                        <img class="gallery__photo--pouring" src="images/img__pouring.webp" alt="シェイカーからグラスに注ぐ様子" decoding="async" loading="lazy">
+                        <figcaption class="gallery__text--pouring">材料は同じでも、色も味わいもそれぞれが異なります。そんなあなたのための一杯を探すのが、僕たちの仕事。</figcaption>
+                    </figure>
+                    <figure class="gallery__couple--food">
+                        <img class="gallery__photo--food" src="images/img__food.webp" alt="お皿に盛り付けられた軽食の写真" decoding="async" loading="lazy">
+                        <figcaption class="gallery__text--food">看板メニュー、サーモンのフィッシュ&amp;チップスもそうした偶然から生まれました。お酒だけじゃなく、料理にも自信があります。</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <section class="menu" id="menu">
+                <h2 class="menu__heading">Signature menu</h2>
+                <ul class="menu__card-list">
+                    <li class="menu-card">
+                        <span class="menu-card__number" aria-hidden="true"><span>1</span></span>
+                        <div class="menu-card__text">
+                            <h3 class="menu-card__text--title" data-eyebrow="Salmon Fish &amp; Chips">サーモンのフィッシュ&チップス</h3>
+                            <p class="menu-card__text--price">&yen;1,500</p>
+                        </div>
+                        <figure class="menu-card__image" aria-hidden="true"><img src="images/img__fish-and-chips.webp" alt="" decoding="async" loading="lazy"></figure>
+                    </li>
+
+                    <li class="menu-card">
+                        <span class="menu-card__number" aria-hidden="true"><span>2</span></span>
+                        <div class="menu-card__text">
+                            <h3 class="menu-card__text--title" data-eyebrow="Cryo Gin &amp; Tonic">ジン・トニック</h3>
+                            <p class="menu-card__text--price">&yen;950</p>
+                        </div>
+                        <figure class="menu-card__image" aria-hidden="true"><img src="images/img__gin-and-tonic.webp" alt="" decoding="async" loading="lazy"></figure>
+                    </li>
+
+                    <li class="menu-card">
+                        <span class="menu-card__number" aria-hidden="true"><span>3</span></span>
+                        <div class="menu-card__text">
+                            <h3 class="menu-card__text--title" data-eyebrow="Death in the Afternoon">デス・イン・ジ・アフターヌーン</h3>
+                            <p class="menu-card__text--price">&yen;1,400</p>
+                        </div>
+                        <figure class="menu-card__image" aria-hidden="true"><img src="images/img__death-in-the-afternoon.webp" alt="" decoding="async" loading="lazy"></figure>
+                    </li>
+
+                    <li class="menu-card">
+                        <span class="menu-card__number" aria-hidden="true"><span>4</span></span>
+                        <div class="menu-card__text">
+                            <h3 class="menu-card__text--title" data-eyebrow="Matcha Martini">和三密の抹茶マティーニ</h3>
+                            <p class="menu-card__text--price">&yen;1,300</p>
+                        </div>
+                        <figure class="menu-card__image" aria-hidden="true"><img src="images/img__matcha-martini.webp" alt="" decoding="async" loading="lazy"></figure>
+                    </li>
+
+                    <li class="menu-card">
+                        <span class="menu-card__number" aria-hidden="true"><span>5</span></span>
+                        <div class="menu-card__text">
+                            <h3 class="menu-card__text--title" data-eyebrow="Tri-assorted Pickles">ピクルスの三種盛り付け</h3>
+                            <p class="menu-card__text--price">&yen;750</p>
+                        </div>
+                        <div class="menu-card__image placeholder" aria-hidden="true"></div> <!-- placeholder: styled by CSS -->
+                    </li>
+
+                    <li class="menu-card">
+                        <span class="menu-card__number" aria-hidden="true"><span>6</span></span>
+                        <div class="menu-card__text">
+                            <h3 class="menu-card__text--title" data-eyebrow="Corpse Reviver No.2">コープス・リバイバー</h3>
+                            <p class="menu-card__text--price">&yen;1,500</p>
+                        </div>
+                        <div class="menu-card__image placeholder" aria-hidden="true"></div> <!-- placeholder: styled by CSS -->
+                    </li>
+
+                </ul>
+            </section>
+
+            <section class="faq" id="faq">
+                <h2 class="visually-hidden">FAQ</h2>
+                <ul class="faq-list">
+                    <li class="faq-item">
+                        <details class="faq-item__details" open>
+                            <summary class="faq-item__question" data-deco="Cover Charge?">チャージ料金は必要ですか？</summary>
+                            <p class="faq-item__answer">当店ではチャージ料金を頂いておりません。<br>
+                            ご注文頂いた商品のみお代を頂戴しております。</p>
+                        </details>
+                    </li>
+                    <li class="faq-item">
+                        <details class="faq-item__details">
+                            <summary class="faq-item__question" data-deco="Alcohol-Free?">お酒が飲めないのですが</summary>
+                            <p class="faq-item__answer">ご注文時に｢モクテル｣とお伝え下さい。<br>
+                            オリジナルに忠実なノンアルコールでお作りいたします。</p>
+                        </details>
+                    </li>
+                    <li class="faq-item">
+                        <details class="faq-item__details">
+                            <summary class="faq-item__question" data-deco="Come Alone?">一人でも大丈夫ですか？</summary>
+                            <p class="faq-item__answer">お一人様も大歓迎です。カウンター席もございます。</p>
+                        </details>
+                    </li>
+                    <li class="faq-item">
+                        <details class="faq-item__details">
+                            <summary class="faq-item__question" data-deco="Any Dress-Code?">ドレスコードはありますか？</summary>
+                            <p class="faq-item__answer">ドレスコードは設けておりません。お気軽にお越しください。</p>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="info" id="info">
+                <h2 class="info__heading">Information</h2>
+                <div class="info__body">
+                    <div class="info__map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.0!2d135.50016463163735!3d34.69961764148927!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e6e97927621f%3A0x57b5d9f98c462313!2z44CSNTMwLTAwNTcg5aSn6Ziq5bqc5aSn6Ziq5biC5YyX5Yy65pu-5qC55bSO77yR5LiB55uu77yR!5e0!3m2!1sja!2sjp!4v1774316155493!5m2!1sja!2sjp" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Sipsprs 所在地"></iframe>
+                        <a class="info__map-link" href="https://maps.google.com/?cid=6320197317907850003" target="_blank" rel="noopener noreferrer">Open map</a>
+                    </div>
+                    <div class="info__location">
+                        <address class="info__address">
+                            大阪府大阪市北区<br>
+                            <span class="info__address-detail">曽根崎一丁目1-1 AAビル 2F</span>
+                        </address>
+                        <ul class="info__access">
+                            <li>大阪市営地下鉄｢東梅田駅｣から 徒歩2分</li>
+                            <li>大阪市営地下鉄｢西梅田駅｣から 徒歩6分</li>
+                            <li>JR東西線｢北新地駅｣から 徒歩8分</li>
+                        </ul>
+                    </div>
+
+                    <dl class="info__details">
+                        <div class="detail-name">
+                            <dt class="detail-name__eyebrow">Store name</dt>
+                            <dd class="detail-name__body">Sipsprs</dd>
+                        </div>
+                        <div class="detail-hours">
+                            <dt class="detail-hours__eyebrow">Opening hours</dt>
+                            <dd class="detail-hours__body">17:00 ~ 26:00</dd>
+                            <dd class="detail-hours__note">(Last order / 25:30)</dd>
+                        </div>
+                        <div class="detail-days">
+                            <dt class="detail-days__eyebrow">Business days</dt>
+                            <dd class="detail-days__body">
+                                <span>月</span>
+                                <span class="closed">火</span>
+                                <span class="closed">水</span>
+                                <span>木</span>
+                                <span>金</span>
+                                <span>土</span>
+                                <span>日</span>
+                            </dd>
+                        </div>
+                        <div class="detail-seats">
+                            <dt class="detail-seats__eyebrow">Seats</dt>
+                            <dd class="detail-seats__body">24席</dd>
+                            <dd>
+                                <dl class="detail-seats__breakdown">
+                                    <div><dt>カウンター</dt><dd>8席</dd></div>
+                                    <div><dt>ハイテーブル(2名掛け)</dt><dd>16席</dd></div>
+                                </dl>
+                            </dd>
+                        </div>
+                        <div class="detail-payment">
+                            <dt class="detail-payment__eyebrow">Payment</dt>
+                            <dd>
+                                <ul class="detail-payment__body">
+                                    <li>現金</li>
+                                    <li>各種クレジットカード</li>
+                                    <li>交通系IC</li>
+                                    <li>QRコード決済<small class="detail-payment__note">(PayPay / Rakuten Pay)</small></li>
+                                </ul>
+                            </dd>
+                        </div>
+                        <div class="detail-smoking">
+                            <dt class="detail-smoking__eyebrow">Smoking</dt>
+                            <dd class="detail-smoking__body">全席禁煙<br><small class="detail-smoking__note">(店外に喫煙所あり)</small></dd>
+                        </div>
+                    </dl>
+                </div>
+
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p class="footer__description">梅田 曽根崎のオーセンティックバー Sipsprs</p>
+            <nav aria-label="フッターのサイトマップ" class="footer__links">
+                <a href="#concept">Concept</a>
+                <a href="#gallery">Photos</a>
+                <a href="#menu">Menu</a>
+                <a href="#faq">FAQ</a>
+                <a href="#info">Info</a>
+                <a href="javascript:void(0)" aria-label="Instagram" class="footer__links-sns"><img src="images/logo_instagram.svg" alt="Instagram"></a>
+            </nav>
+            <div class="footer__legal">
+                <small class="copyright">&copy; 2026 Sipsprs. All rights reserved.</small>
+                <small class="disclaimer">架空の店舗サイトです。決済サービス名は対応手段の表示例として記載したものであり、各社との提携を示すものではありません。</small>
+            </div>
+        </footer>
+    </body>
+</html>

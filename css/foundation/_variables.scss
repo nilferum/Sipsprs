@@ -1,0 +1,81 @@
+@use 'sass:color';
+
+// alpha指定用function
+// アルファチャンネルが50%の場合、v.a(v.$variable, 0.5)で指定
+@function a($base, $alpha) {
+    @return color.change($base, $alpha: $alpha);
+}
+
+$backgroundcolor-dark:
+    oklch(0.40 0.017 285);
+$backgroundcolor-tint:
+    oklch(0.94 0.014 90);
+$backgroundcolor-light:
+    oklch(0.97 0.008 90);
+$text-color-light:
+    oklch(0.94 0.012 85);
+$shadow-highlight:
+    oklch(0.95 0.15 265);
+$shadow-highlight-light:
+    oklch(0.65 0.15 145);
+$text-color-dark:
+    oklch(0.36 0.028 270);
+$focus-color: 
+    oklch(80% 0.044 240);
+
+$garamond:
+    "Cormorant Garamond",   //本命
+    "Garamond",             //セカンダリ
+    "New York",             //MacOS + iOS
+    "Georgia",              //Windows
+    "Noto Serif";           //Android
+
+$marcellus:
+    "Marcellus",            //本命
+    "Optima",               //セカンダリ
+    "Avenir Next",          //MacOS + iOS
+    "Candara",              //Windows
+    "Noto Sans";            //Android
+
+$shippori-m:
+    "ShipporiMincho-Local", //本命
+    "A1Mincho",             //セカンダリ
+    "Hiragino Mincho ProN", //MacOS + iOS
+    "Yu Mincho",            //Windows
+    "YuMincho",             //Windows
+    "Ryumin",               //AQUOS
+    "Noto Serif CJK JP";    //Google Pixel
+
+$descender-offset: 0.25em;  //Marcellusのベースラインからディセンダーまでの距離
+$brace-offset: 0.125em;     //Garamondのキャップハイト-ディセンダー補正
+$bracket-offset: 0rem;   //deco brackets
+
+// opacity
+$opacity-muted: 0.25;
+$opacity-half: 0.5;
+$opacity-subtle: 0.75;
+$opacity-slight: 0.875;
+
+// font-size
+$font-size-heading: clamp(2rem, 1.257rem + 3.05vw, 4rem); //https://min-max-calculator.9elements.com/?32,64,390,1440
+$font-size-body: clamp(0.9rem, 0.871rem + 0.14vw, 1rem); //https://min-max-calculator.9elements.com/?14_4,16,320,1440
+
+// z-index
+$z-hero: 1;
+$z-main: 2;
+$z-drawer: 90;
+$z-header: 100;
+
+// breakpoint
+$breakpoint-pc: 769px;
+$breakpoint-sp: 768px;
+
+$wrapper: 1366px;
+
+$icon-size-instagram: min(29px, 2rem);
+// https://www.meta.com/ja-jp/brand/resources/instagram/icons/
+// 最小サイズ
+// >必ず29x
+
+$menu-gap-pc: 3rem;
+$menu-image-size-pc: 9rem;

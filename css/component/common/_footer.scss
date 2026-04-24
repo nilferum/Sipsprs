@@ -1,0 +1,76 @@
+@use '../../foundation/_variables' as v;
+@use '../../foundation/_mixin' as m;
+
+.footer {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding-block: 3rem 1rem;
+    background-color: v.$backgroundcolor-dark;
+    color: v.$text-color-light;
+}
+
+.footer__description {
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+    opacity: v.$opacity-half;
+}
+
+
+.footer__links  {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+
+    a {
+        position: relative;
+        font-family: v.$marcellus, sans-serif;
+        font-size: 0.875rem;
+        letter-spacing: 0.05em;
+        opacity: v.$opacity-subtle;
+        &:focus-visible {
+            border-radius: 1px;
+            outline-color: v.a(v.$text-color-light, v.$opacity-half)
+        }
+
+        @include m.clickable-expand(-0.8125rem -0.175em); // 縦:2.5rem 横:最小のInfoがmixVWで32px
+    }
+
+    &-sns {
+        margin-left: 1rem;
+        display: block;
+        width: v.$icon-size-instagram;
+        height: v.$icon-size-instagram;
+
+        &:focus-visible {outline-offset: 0.5rem;}
+
+        @include m.clickable-expand(-25%); // 2.5rem square
+        img {
+                width: 100%;
+                height: 100%;
+            }
+    }
+}
+
+.footer__legal {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    font-size: 0.625rem;
+    letter-spacing: 0.03em;
+    opacity: v.$opacity-half;
+
+    small {
+        display: inline-block;
+        text-align: center;
+    }
+    .copyright {font-family: v.$marcellus, sans-serif;}
+    .disclaimer {
+        width: min(48em, 100vw);
+        line-height: 1.7em;
+    }
+}

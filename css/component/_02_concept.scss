@@ -1,0 +1,35 @@
+@use '../foundation/_variables' as v;
+@use '../foundation/_mixin' as m;
+
+.concept {
+    padding-block: 16rem;
+    background-color: v.$backgroundcolor-dark;
+    text-align: center;
+
+    &__heading {
+        margin-bottom: 8rem;
+        font-size: v.$font-size-body;
+        line-height: 1em;
+        letter-spacing: -0.02em;
+
+        &::before {
+            content: attr(data-label);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-family: v.$garamond, serif;
+            font-size: v.$font-size-heading;
+            line-height: 1em;
+            letter-spacing: -0.02em;
+        }
+    }
+
+    &__body {
+        display: inline-block;
+        margin-inline: auto;
+        font-size: v.$font-size-body;
+        line-height: 1.9em;
+        letter-spacing: 0.05em;
+        font-feature-settings: "palt";
+        color: v.a(v.$text-color-light, v.$opacity-subtle);
+    }
+}

@@ -1,0 +1,107 @@
+@use '../../foundation/_variables' as v;
+@use '../../foundation/_mixin' as m;
+
+.drawer {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: v.$z-drawer;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    padding: 4rem 8rem 2rem max(1rem, calc(((100vw - v.$wrapper) / 2) + 1rem));
+    background: v.a(v.$backgroundcolor-dark, v.$opacity-slight);
+    backdrop-filter: blur(16px);
+    color: v.$text-color-light;
+    visibility: hidden;
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.4s;
+
+    &::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background: v.a(v.$backgroundcolor-dark, v.$opacity-half);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+    }
+
+    &.is-open {
+        visibility: visible;
+        transform: translateX(0);
+
+        &::before {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    }
+
+    .reserve-button { // headerから継承
+        align-self: center;
+        margin-top: auto;
+        margin-bottom: 3rem;
+    }
+}
+
+.drawer__sns {
+    margin-top: calc(v.$icon-size-instagram / 2);
+
+    &-link {
+        position: relative;
+        display: block;
+        width: v.$icon-size-instagram;
+        height: v.$icon-size-instagram;
+        opacity: v.$opacity-subtle;
+        &:focus-visible {
+            outline: none;
+            background-color: v.a(v.$text-color-light, v.$opacity-muted);
+        }
+
+        @include m.clickable-expand (-25%);
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.drawer__list {
+    display: flex;
+    gap: 2em;
+    flex-direction: column;
+}
+
+.drawer__link {
+    display: block;
+    padding: 1em 1em 0 0;
+    border-bottom: 1px solid v.a(v.$text-color-light, v.$opacity-muted);
+    font-size: 0.7rem;
+    color: v.a(v.$text-color-light, v.$opacity-subtle);
+
+    &:hover {
+        text-shadow: 0 0.1em 0.5em v.a(v.$focus-color, v.$opacity-half);
+    }
+
+    &:focus-visible {
+        outline: none;
+        text-shadow: 
+            0 0.2em 1em v.a(v.$focus-color, v.$opacity-subtle),
+            0 -0.2em 1em v.a(v.$focus-color, v.$opacity-subtle);
+    }
+
+    &::before {
+        content: attr(data-label);
+        display: block;
+        margin-bottom: 0;
+        font-family: v.$marcellus, sans-serif;
+        font-size: 1.5rem;
+        line-height: 1;
+        letter-spacing: 0.05em;
+        text-transform: capitalize;
+        color: v.$text-color-light;
+    }
+}
+
+.drawer__list:hover .drawer__link:not(:hover) {filter: blur(2px);} // bbも一緒にボケる

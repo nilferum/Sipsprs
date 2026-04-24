@@ -1,0 +1,209 @@
+@use '../foundation/_variables' as v;
+@use '../foundation/_mixin' as m;
+
+// HTML側のdata-eyebrowはtitlecaseで記載。text-transformに前置詞(in/the)をlowercaseのままcapitalizeにする値がないため。
+
+.menu {
+    padding: 8rem 0.5rem;
+    background-color: v.$backgroundcolor-light;
+    color: v.$text-color-dark;
+
+    &__heading {
+        margin-left: max(1rem, calc((100vw - #{v.$wrapper}) / 2 + 1rem));
+        margin-bottom: 2rem;
+        font-family: v.$garamond, serif;
+        font-size: v.$font-size-heading;
+        line-height: 1em;
+        letter-spacing: -0.02em;
+        text-transform: capitalize;
+        text-shadow: 0 -1px 0 v.a(v.$shadow-highlight-light, v.$opacity-muted);
+    }
+}
+
+.menu__card-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-card {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 4rem 0.25rem;
+    border-top: 1px solid v.a(v.$text-color-dark, v.$opacity-muted);
+    font-size: 1rem;
+
+    &:last-child {border-bottom: 1px solid v.a(v.$text-color-dark, v.$opacity-muted);}
+
+    @media (min-width: v.$breakpoint-pc) {
+        align-items: stretch;
+        gap: v.$menu-gap-pc; // 他のpropに連動するためvar化
+        max-width: calc(v.$wrapper - 6rem); // ハンバーガーメニューと被らないように
+        padding-inline: 2rem;
+    }
+
+    &__number { //数字をカット + 斜線を入れるデザイン
+        @media (max-width: v.$breakpoint-sp) {display: none;}
+        @media (min-width: v.$breakpoint-pc) {display: block;}
+
+        --cut-angle: 45deg;                                     //Independent variables(ここだけ触ればOK)
+        --cut-x: 0.45em;
+        --slash-length: 0.975em;
+        --slash-offset: -0.0625em;
+
+        --cut-y: calc(var(--cut-x) * tan(var(--cut-angle)));    //Dependent variables(プロパティの値の見通しを良くするための関数)
+        --cut-xc: calc(100% - var(--cut-x));                        //x座標に対する補数(complement)
+        --cut-yc: calc(100% - var(--cut-y));                        //y座標に対する補数
+
+        width: 1ex; // Marcellusは0以外の数字の幅がxの高さと同じため
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        font-family: v.$marcellus, serif;
+        font-size: 4em;
+        line-height: 1em;
+        text-align: end;
+        color: v.a(v.$text-color-dark, v.$opacity-half);
+
+        > span {
+            display: block;
+            clip-path: polygon(
+                0 0,
+                100% 0,
+                100% var(--cut-yc),
+                var(--cut-xc) 100%,
+                0 100%
+            );
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            right: calc(var(--cut-x) * 0.5 - var(--slash-length) * 0.5);
+            bottom: calc(var(--cut-y) * 0.5);
+            width: var(--slash-length);
+            height: 0;
+            border-top: 1px solid v.a(v.$text-color-dark, v.$opacity-half);
+            transform: rotate(calc(-1 * var(--cut-angle))) translateX(calc(-1 * var(--slash-offset)));
+        }
+    }
+
+    &__text {
+        flex: 1;
+        min-width: 0;          // flex child の truncate mixin に必要
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        @media (min-width: v.$breakpoint-pc) {
+            padding-left: 4rem;
+            justify-content: space-between;
+            gap: 0;
+        }
+
+        &--title {
+            font-size: 0.8em;
+            line-height: 1em;
+            letter-spacing: -0.03em;
+            font-feature-settings: "palt";
+            text-align: right;
+            color: v.$text-color-dark;
+            @include m.truncate;
+
+            @media (min-width: v.$breakpoint-pc) {
+                text-align: left;
+            }
+
+            &::before {
+                content: attr(data-eyebrow);
+                display: block;
+                margin-bottom: 0.25rem;
+                font-family: v.$marcellus, sans-serif;
+                font-size: 1.5em;
+                line-height: 1em;
+                letter-spacing: -0.02em;
+                color: v.a(v.$text-color-dark, v.$opacity-slight);
+                @include m.truncate;
+
+                @media (min-width: v.$breakpoint-pc) {font-size: 1.75em;}
+            }
+        }
+
+        &--price {
+            font-family: v.$garamond, serif;
+            font-size: 1em;
+            text-align: right;
+            line-height: 1em;
+            color: v.a(v.$text-color-dark, v.$opacity-slight);
+
+            @media (min-width: v.$breakpoint-pc) {
+                transform: translateX(calc(v.$menu-gap-pc + v.$menu-image-size-pc));
+
+                &::before {
+                    content: '{ ';
+                    position: relative;
+                    top: v.$brace-offset;
+                    margin-right: 0.5em;
+                }
+                &::after {
+                    content: ' }';
+                    position: relative;
+                    top: v.$brace-offset;
+                    margin-left: 0.5em;
+                }
+            }
+        }
+    }
+
+    &__image {
+        flex-shrink: 0;
+        position: relative;
+
+        @media (min-width: v.$breakpoint-pc) {
+            transform: translateX(calc(-1 * (v.$menu-gap-pc + v.$menu-image-size-pc)));
+
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                width: 0.75em;
+                height: 0.75em;
+                pointer-events: none;
+                opacity: v.$opacity-half;
+            }
+
+            &::before {
+                top: v.$bracket-offset;
+                left: v.$bracket-offset;
+                background: url('../images/deco__brackets-opening.svg') no-repeat center / contain;
+            }
+
+            &::after {
+                bottom: v.$bracket-offset;
+                right: v.$bracket-offset;
+                background: url('../images/deco__brackets-closing.svg') no-repeat center / contain;
+            }
+        }
+    }
+
+    img, .placeholder {
+        width: 6rem;
+        height: 6rem;
+        @media (min-width: v.$breakpoint-pc) { width: v.$menu-image-size-pc; height: v.$menu-image-size-pc; }
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+        filter: drop-shadow(0 -0.25rem 0.5rem v.a(oklch(0 0 0), 0.25));
+    }
+
+    .placeholder {
+        background-color: v.a(v.$backgroundcolor-tint, v.$opacity-subtle);
+    }
+}

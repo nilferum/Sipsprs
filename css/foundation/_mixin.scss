@@ -1,0 +1,15 @@
+@use '_variables' as v;
+
+@mixin clickable-expand ($size) { // insert negative or zero parameter
+    &::after {
+        content: '';
+        position: absolute;
+        inset: $size;
+    }
+}
+
+@mixin truncate () {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+}

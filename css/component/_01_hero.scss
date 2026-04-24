@@ -1,0 +1,50 @@
+@use '../foundation/_variables' as v;
+@use '../foundation/_mixin' as m;
+
+.hero {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: v.$z-hero;
+    width: 100vw;
+    height: 97.5lvh;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: no-repeat center/cover;
+        filter: saturate(0.5) brightness(0.6);
+        @media (max-width: v.$breakpoint-sp) {background-image: url("../images/bgi__mainvisual-sp.webp");}
+        @media (min-width: v.$breakpoint-pc) {background-image: url("../images/bgi__mainvisual-pc.webp");}
+    }
+}
+
+main {
+    position: relative;
+    z-index: v.$z-main;
+    margin-top: 97.5lvh;
+}
+
+.site-title {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 6rem;
+    font-family: v.$marcellus, sans-serif;
+    font-size: v.$font-size-heading;
+    line-height: 1em;
+    letter-spacing: 0.02em;
+    text-align: center;
+    text-shadow:
+        0 0.125rem 0.25rem oklch(0 0 0 / 0.4), // drop shadow
+        0 -2px 0 v.a(v.$shadow-highlight, v.$opacity-muted); // inner highlight
+}
+
+.site-outline {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 4rem;
+    letter-spacing: 0.05em;
+    text-align: center;
+}

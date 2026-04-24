@@ -1,0 +1,110 @@
+@use '../foundation/_variables' as v;
+@use '../foundation/_mixin' as m;
+
+.gallery {
+    background-image: linear-gradient(to bottom, v.$backgroundcolor-dark 0%, v.$backgroundcolor-light 100%);
+    color: v.$text-color-light;
+
+    &__stage {
+        position: relative;
+        overflow: hidden;
+        width: 100vw;
+        height: 100lvh;
+    }
+
+    &__heading {
+        top: 50%;
+        right: 8px;
+        transform: translate(0%, -50%);
+        font-family: v.$garamond, serif;
+        font-size: v.$font-size-heading;
+        line-height: 0.9em;
+        letter-spacing: -0.04em;
+        text-align: center;
+
+        @media (min-width: v.$breakpoint-pc) {
+            right: auto;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    --photo-r: 25vmax;                              // SPでは画面の外に寄せる
+    --text-r: 25vmax;                               // SPでは画面の外に寄せる
+    @media (min-width: v.$breakpoint-pc) {
+        --photo-r: 35vmin;                          // PCでは画面の中央に寄せる
+        --text-r: 20vmin;                           // PCでは画面の中央に寄せる
+    }
+
+    &__couple--featured {
+        --photo-angle:  calc(1rad * pi * (5 / 6));      // 写真は動きをランダムにつける。π/6スケール
+        --text-angle:   calc(1rad * pi * (14 / 24));    // 文字は動きを抑えながら、Z字の視線誘導。π/24スケール
+        --photo-max:    990px;
+    }
+
+    &__couple--table {
+        --photo-angle:  calc(1rad * pi * (-5 / 6));     // δ = 2π/6
+        --text-angle:   calc(1rad * pi * (10 / 24));    // δ = 4π/24 右
+        --photo-max:    990px;
+    }
+
+    &__couple--pouring {
+        --photo-angle:  calc(1rad * pi * (1 / 6));      // δ = 6π/6
+        --text-angle:   calc(1rad * pi * (13 / 24));    // δ = 1π/24 左下
+        --photo-max:    500px;
+    }
+
+    &__couple--food {                                   // menuに視点誘導するために下に固める。
+        --photo-angle:  calc(1rad * pi * (4 / 6));      // δ = 3/6
+        --text-angle:   calc(1rad * pi * (9 / 24));     // δ = 4/24 右
+        --photo-max:    990px;
+    }
+}
+
+[class*="gallery__"]:not(.gallery__stage) {position: absolute;}
+
+.gallery__heading {
+    opacity: 0;
+}
+
+[class*="gallery__couple--"] {
+    inset: 0;
+    opacity: 0;
+}
+
+[class*="gallery__photo--"] {
+    top:  calc(50% + var(--photo-r) * sin(var(--photo-angle)));
+    left: calc(50% + var(--photo-r) * cos(var(--photo-angle)));
+    transform: translate(-50%, -50%);
+    border-radius: 0.25rem;
+    object-fit: cover;
+    width: 50vmax;
+    max-width: var(--photo-max);
+}
+
+[class*="gallery__text--"] {
+    top:  calc(50% + var(--text-r) * sin(var(--text-angle)));
+    left: calc(50% + var(--text-r) * cos(var(--text-angle)));
+    transform: translate(-50%, -50%);
+    font-size: v.$font-size-body;
+    width: 32em;
+    background-color: v.$backgroundcolor-tint;
+    padding: 2em 4em;
+    border-radius: 4px;
+    clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 1em),calc(100% - 1em) 100%, 0% 100%);
+    box-shadow: 0 0 4px v.a(oklch(0% 0 0), v.$opacity-half);
+    color: v.$text-color-dark;
+    line-height: 1.75;
+    font-feature-settings: "palt";
+
+    @media  (max-width:v.$breakpoint-sp) {
+        padding: 1em 1.5em 1em 2em;
+        max-width: 18em;
+        line-height: 1.4;
+        letter-spacing: 0.02em;
+    }
+}
+
+.gallery__photo--featured, .gallery__photo--table    { aspect-ratio: 9 / 16; }
+.gallery__photo--pouring  { aspect-ratio: 1 / 3; }
+.gallery__photo--food     { aspect-ratio: 16 / 9; }
